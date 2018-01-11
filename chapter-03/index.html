@@ -1,0 +1,3430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Jouer avec JavaScript</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:initial}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style type="text/css">.interactive--javascript code[data-lang]:before {
+  display: block;
+  color: #00c72b;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+  [lang="en"] .interactive--javascript code[data-lang]:before {
+    content: "▶ run code";
+  }
+  [lang="fr"] .interactive--javascript code[data-lang]:before {
+    content: "▶ voir le résultat";
+  }
+  .interactive--javascript code[data-label]:before {
+    content: attr(data-label);
+  }
+
+.interactive iframe {
+  position: absolute;
+  visibility: hidden;
+}
+
+.interactive.status--loaded iframe {
+  position: inherit;
+  visibility: visible;
+}
+
+.interactive.status--loading {
+  opacity: .5;
+}
+</style><script src="https://embed.runkit.com/" defer async></script><script>(function(){
+        function makeListingInteractive(element){
+  if (element.classList.contains('interactive--installed')) {
+    return;
+  }
+
+  const code = element.querySelector('code');
+  const source = code
+    .textContent
+    .replace(/\(\d+\)$/gm, '')
+    .replace(/^["']?use strict["'][; ]*\n/, '');
+
+  element.classList.add('status--loading');
+
+  // eslint-disable-next-line no-undef
+  RunKit.createNotebook({
+    element: element,
+    source: source,
+    onLoad: function(ntbk) {
+      element.classList.add('interactive--installed');
+      element.classList.remove('status--loading');
+      element.classList.add('status--loaded');
+      code.parentNode.setAttribute('hidden', true);
+
+      ntbk.evaluate();
+    }
+  });
+}
+function installEvents() {
+  function getParent(el, condition) {
+    let parent = el;
+
+    while(parent = parent.parentNode) {
+      if (condition(parent)) {
+        return parent;
+      }
+    }
+  }
+
+  function hasClass(className) {
+    return function check(el) {
+      return el.classList.contains(className);
+    }
+  }
+
+  document.querySelector('body').addEventListener('click', function(el) {
+    if (el.target.classList.contains('language-javascript')) {
+      const parentNode = getParent(
+        el.target,
+        hasClass('interactive--javascript')
+      );
+
+      makeListingInteractive(parentNode);
+    }
+  });
+}
+
+        document.addEventListener('DOMContentLoaded', installEvents);
+      })();</script>
+</head>
+<body class="book">
+<div id="header">
+<h1>Jouer avec JavaScript</h1>
+<div class="details">
+<span id="revdate">2018-01-11</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>TBD.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<div class="title">Sommaire</div>
+<ul>
+<li>
+<p>TBD.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="quoteblock abstract">
+<blockquote>
+
+</blockquote>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Remarque</span> Versions de Node et npm</div>
+<div class="paragraph">
+<p>Le contenu de ce chapitre se réfère aux versions de <strong>Node v8</strong> et <strong>npm v5</strong>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Remarque</span> Utilisation des exemples</div>
+<div class="paragraph">
+<p>Les exemples légendés avec un <em>nom de fichier</em> sont disponibles dans le module <em>npm</em> dédié à cet ouvrage.
+Ils sont fonctionnels et destinés à être exécutés sur votre ordinateur :</p>
+</div>
+<div class="listingblock">
+<div class="title">Exemple d&#8217;exécution du bloc de code légendé par <code>TODO.js</code>.</div>
+<div class="content">
+<pre>$ npm install --global nodebook@latest
+$ nodebook chapter 3
+$ node ./examples/TODO.js</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table des matières</div>
+<ul class="sectlevel1">
+<li><a href="#node_javascript_et_ecmascript">1. Node, JavaScript et ECMAScript</a>
+<ul class="sectlevel2">
+<li><a href="#standard_ecma_262_edition_5">1.1. Standard ECMA-262 Edition 5</a></li>
+<li><a href="#standard_ecma_262_edition_2015_2016_etc">1.2. Standard ECMA-262 Edition 2015, 2016 etc.</a></li>
+</ul>
+</li>
+<li><a href="#primitives">2. Rappel des primitives ECMAScript</a>
+<ul class="sectlevel2">
+<li><a href="#string">2.1. String</a></li>
+<li><a href="#primitive-boolean">2.2. Boolean</a></li>
+<li><a href="#number">2.3. Number</a></li>
+<li><a href="#primitive-function">2.4. Function</a></li>
+<li><a href="#primitive-array">2.5. Array</a></li>
+<li><a href="#primitive-object">2.6. Object</a></li>
+<li><a href="#date">2.7. Date</a></li>
+<li><a href="#primitive-destructuring">2.8. Décomposition</a></li>
+<li><a href="#primitive-rest">2.9. Paramètres du reste</a></li>
+<li><a href="#primitive-map-set">2.10. Map et Set</a></li>
+<li><a href="#primitive-class">2.11. Class</a></li>
+<li><a href="#primitive-promise">2.12. Promise</a></li>
+<li><a href="#primitive-async-await">2.13. async/await</a></li>
+<li><a href="#primitive-regexp">2.14. RegExp</a></li>
+<li><a href="#primitive-json">2.15. JSON</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="node_javascript_et_ecmascript">1. Node, JavaScript et ECMAScript</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nous l&#8217;avons vu dans le premier chapitre, Node utilise JavaScript comme principal langage de développement.
+Mais contrairement à Ruby, Python ou PHP dont le numéro de version annonce les fonctionnalités exploitables, qu&#8217;en est-il de Node et de JavaScript ?</p>
+</div>
+<div class="paragraph">
+<p>Il faut se tourner du côté de <em>V8</em> pour savoir ce que la machine virtuelle est capable de comprendre.
+Et comme chaque version de Node est associée à une version spécifique de <em>V8</em>, il suffit d&#8217;aller regarder les notes de version de V8 pour l&#8217;apprendre.</p>
+</div>
+<div class="paragraph">
+<p>De manière générale, <em>V8</em> implémente les spécifications approuvées ou en passe d&#8217;être approuvées par le comité gérant l&#8217;évolution du langage JavaScript : le <strong>TC39</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Enfin si vous n&#8217;avez pas envie de retourner la moitié du web pour savoir si <em>V8</em>, donc Node, supporte telle ou telle fonctionnalité, partez du principe que <strong>le JavaScript supporté par Chrome ou Opera correspond au JavaScript supporté par Node</strong>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">FAQ</span> JavaScript ou ECMAScript ?</div>
+<div class="paragraph">
+<p>On peut lire régulièrement les termes <em>JavaScript</em> et <em>ECMAScript</em> comme s&#8217;il s&#8217;agissait de la même chose, y compris dans cet ouvrage.
+<strong>JavaScript et ECMAScript sont la même chose</strong>.</p>
+</div>
+<div class="paragraph">
+<p>JavaScript a été inventé en 1995 par Brendan Eich alors qu&#8217;il était employé de la société <em>Netscape Communications</em>.
+Microsoft lui emboîte le pas en incluant JavaScript dans son logiciel Internet Explorer, alors en version 3.
+Pour des raisons de droits de marque, il y est dénommé <em>JScript</em>.</p>
+</div>
+<div class="paragraph">
+<p>La spécification est ensuite validée par l&#8217;organisme <em>Ecma International</em> en juin 1997 sous le nom d'<em>ECMAScript</em>, standard ECMA-262.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilisation du terme <em>JavaScript</em> est resté dans le vocabulaire courant. Mais c&#8217;est bien d'<em>ECMAScript</em> dont on parle, vraiment.</p>
+</div>
+<div class="paragraph">
+<p>Adobe Flash utilise un dérivé d&#8217;ECMAScript, ActionScript et bien des machines virtuelles sont capables d&#8217;interpréter partiellement ou intégralement ECMAScript : Rhino en Java, Konq, BESEN en Object Pascal ou encore Esprima en… ECMAScript.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La suite de l&#8217;ouvrage emploie principalement le terme <em>ECMAScript</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="standard_ecma_262_edition_5">1.1. Standard ECMA-262 Edition 5</h3>
+<div class="paragraph">
+<p>ECMAScript a été standardisé dans sa version 5 en décembre 2009.
+Il s&#8217;agit de la version d&#8217;ECMAScript supportée depuis les débuts de Node.
+La révision 5.1 de juin 2011 est une correction mineure de la spécification.</p>
+</div>
+<div class="paragraph">
+<p>Il s&#8217;agit d&#8217;une évolution majeure, dix ans après sa précédente édition, ECMAScript 3.</p>
+</div>
+<div class="paragraph">
+<p>ECMAScript 5 introduit le mode strict limitant fortement les effets de bord indésirables, de nouvelles fonctionnalités pour <code>Object</code> et <code>Array</code>, le support natif de <em>JSON</em> et <code>Function.prototype.bind</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://kangax.github.io/compat-table/es5/" class="bare">kangax.github.io/compat-table/es5/</a></span></p>
+</li>
+<li>
+<p><span class="URL"><a href="https://www.ecma-international.org/ecma-262/5.1/" class="bare">www.ecma-international.org/ecma-262/5.1/</a></span></p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/compat-table.png" alt="compat table" width="85%">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="standard_ecma_262_edition_2015_2016_etc">1.2. Standard ECMA-262 Edition 2015, 2016 etc.</h3>
+<div class="paragraph">
+<p>La spécification <strong>ECMAScript 2015</strong> (<em>ES2015</em>) a été publiée en juin 2015 et succède à <strong>ECMAScript 5</strong>.<br>
+La spécification <em>ES2015</em> a successivement été appelée <em>ECMAScript Harmony</em>, <em>ECMAScript 6</em>, puis <em>ECMAScript 2015</em>.</p>
+</div>
+<div class="paragraph">
+<p>La page Web suivante référence l&#8217;état de l&#8217;implémentation d&#8217;ECMAScript 2015 ainsi que des versions ultérieures sur différentes plates-formes, dont Node :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://kangax.github.io/compat-table/es6/" class="bare">kangax.github.io/compat-table/es6/</a></span></p>
+</li>
+<li>
+<p><span class="URL"><a href="https://www.ecma-international.org/ecma-262/6.0/" class="bare">www.ecma-international.org/ecma-262/6.0/</a></span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un autre site web se focalise uniquement sur les avancées de l&#8217;implémentation des versions <strong>ECMAScript</strong> pour Node : <span class="URL"><a href="http://node.green/" class="bare">node.green/</a></span>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/compat-table-node.png" alt="compat table node" width="85%">
+</div>
+</div>
+<div class="paragraph">
+<p>Certaines fonctionnalités sont disponibles uniquement en utilisant une option de démarrage spécifique, par exemple :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ node --harmony script.js                <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Active toutes les fonctionnalités préliminaires.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une page explicative (en anglais) sur le site <code>nodejs.org</code> contient des indications à jour sur la compatibilité générale avec <em>_ECMAScript 2015</em> : <span class="URL"><a href="https://nodejs.org/en/docs/es6/" class="bare">nodejs.org/en/docs/es6/</a></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="primitives">2. Rappel des primitives ECMAScript</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un des conforts apporté par l&#8217;utilisation d&#8217;ECMAScript dans Node est qu&#8217;il n&#8217;y a pas à se soucier de la compatibilité navigateur : vous pouvez utiliser le meilleur de JavaScript !</p>
+</div>
+<div class="paragraph">
+<p>Ce résumé des primitives et fonctionnalités principales d'<em>ECMAScript</em> a pour but de vous apprendre ou de vous rappeler des fonctionnalités du langage disponibles dans Node v8.</p>
+</div>
+<div class="sect2">
+<h3 id="string">2.1. String</h3>
+<div class="paragraph">
+<p>Chaque élément d&#8217;une chaîne de caractères est encodé au format UTF-16 et peut donc contenir 16 bits de données.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>typeof</code> permet d&#8217;identifier une chaîne :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">typeof 'Eyrolles'; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'string'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut connaître la longueur d&#8217;une chaîne via son attribut <code>length</code>.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'I ♥ JavaScript'.length; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>14</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut nettoyer les espaces englobant une chaîne avec la méthode <code>trim</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'  w w w  '.trim(); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'w w w'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut connaître la position d&#8217;un ou plusieurs caractères via la méthode <code>indexOf</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'I ♥ JavaScript'.indexOf('JavaScript'); <i class="conum" data-value="1"></i><b>(1)</b>
+'I ♥ JavaScript'.indexOf('I'); <i class="conum" data-value="2"></i><b>(2)</b>
+'I ♥ JavaScript'.indexOf('?'); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>4</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>0</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>-1</code>, aucune occurrence n&#8217;ayant été trouvée.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut collecter les occurrences correspondantes à un masque de caractères via la méthode <code>match</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'I ♥ JavaScript'.match('♥'); <i class="conum" data-value="1"></i><b>(1)</b>
+'I ♥ JavaScript'.match(/\wa/g); <i class="conum" data-value="2"></i><b>(2)</b>
+'I ♥ JavaScript'.match('!'); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>['♥']</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>['Ja', 'va']</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>null</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut remplacer les occurrences correspondantes à un masque de caractères via la méthode <code>replace</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'I ♥ JavaScript'.replace('♥', 'love'); <i class="conum" data-value="1"></i><b>(1)</b>
+'I ♥ JavaScript'.replace(/[A-Z]/g, (char) =&gt; char.toLowerCase()); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'I love JavaScript'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'i ♥ javascript'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les <em>template literals</em> servent à composer des chaînes de caractères multilignes et/ou contenant des expressions ECMAScript :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">primivite-template-literals.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const lang = 'JavaScript';
+const { basename } = require('path');
+
+console.log(`I ♥ ${lang}.
+Cet exemple se trouve dans le fichier "${basename(__filename)}"`); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'I ♥ JavaScript.\nCet exemple se trouve dans le fichier "template-literals.js"'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les <em>template literals</em> peuvent se préfixer d&#8217;un nom de fonction.
+Ce mécanisme nommé <em>tagged template literals</em> sert de filtre pour interpréter et interpoler le contenu de chaque <em>template</em> (élément contenu dans <code>${}</code>). Vous pouvez écrire vos propres fonctions mais aussi utiliser des modules <em>npm</em>.<br>
+L&#8217;exemple suivant illustre une sécurisation de contenu tiers à l&#8217;aide de la fonction <code>safeHtml</code> fournie par le module <code>common-tags</code> (<span class="URL"><a href="https://npmjs.com/common-tags" class="bare">npmjs.com/common-tags</a></span>) :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">primivite-template-literal-tags.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const { safeHtml } = require('common-tags');
+const text = '&lt;script&gt;alert(document.cookie)&lt;/script&gt;';
+
+console.log(`&lt;div class="user-content"&gt;
+  ${text}
+&lt;/div&gt;`); <i class="conum" data-value="1"></i><b>(1)</b>
+
+console.log(safeHtml`&lt;div class="user-content"&gt;
+  ${text}
+&lt;/div&gt;`); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>&lt;div class="user-content"&gt;\n&lt;script&gt;alert(document.cookie)&lt;/script&gt;\n&lt;/div&gt;</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>&lt;div class="user-content"&gt;\n&amp;lt;script&amp;gt;alert(document.cookie)&amp;lt;/script&amp;gt;\n&lt;/div&gt;</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-boolean">2.2. Boolean</h3>
+<div class="paragraph">
+<p>Un booléen est une donnée de type logique qui peut être <em>vraie</em> ou <em>fausse</em> en prenant respectivement la valeur <code>true</code> ou <code>false</code>.
+C&#8217;est un type de choix pour effectuer des <em>assertions</em> et vérifier des <em>conditions</em>.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">bool.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const counter = 3;
+
+console.log(counter);               <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(counter &gt; 0);           <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(counter &lt; 0);           <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(counter === 3);         <i class="conum" data-value="4"></i><b>(4)</b>
+console.log(counter &amp;&amp; counter &gt; 0);<i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>3</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>true</code> car la condition est vérifiée ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>false</code> car la condition n&#8217;est pas vérifiée ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>true</code> car <code>3</code> <em>équivaut strictement</em> à <code>3</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Affiche <code>true</code> car la condition est vérifiée.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une donnée peut être convertie en un booléen à l&#8217;aide de la fonction <code>Boolean</code>.
+Toute valeur non-nulle convertie en booléen retournera <code>true</code>.
+On dit alors que cette valeur est <code>truthy</code>.
+À l&#8217;inverse, une valeur nulle, vide ou indéfinie sera dite <code>falsy</code> – <code>null</code>, <code>0</code>, <code>''</code>, <code>undefined</code>, <code>false</code> et <code>NaN</code>.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">bool-truthy-falsy.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const counter = 3;
+
+console.log(Boolean(''));       <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(Boolean(counter));  <i class="conum" data-value="2"></i><b>(2)</b>
+
+if (counter) {                  <i class="conum" data-value="3"></i><b>(3)</b>
+  console.log('if (counter) équivaut à if (Boolean(counter))');
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>false</code> car il s&#8217;agit d&#8217;une <em>chaîne vide</em> convertie en booléen ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>true</code> car il s&#8217;agit d&#8217;un <em>nombre différent de 0</em> converti en booléen ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>counter</code> vaut <code>3</code> donc la <em>condition est vérifiée</em> – elle est <em>truthy</em> – et exécutera la ligne d&#8217;après.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Méfiance</span> Double égalité vs. triple égalité</div>
+<div class="paragraph">
+<p>Il est recommandé d&#8217;utiliser l&#8217;opérateur de <em>triple égalité</em> pour s&#8217;assurer que deux éléments sont <strong>de même type et de même valeur</strong>.
+Les cas de figure où la <em>double égalité</em> évite les effets de bord indésirables sont peu nombreux…</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>console.log('' == 0);   <i class="conum" data-value="1"></i><b>(1)</b>
+console.log('' === 0);  <i class="conum" data-value="2"></i><b>(2)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>true</code> car les deux valeurs sont <em>falsy</em> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>false</code> car les deux valeurs ne sont pas <em>strictement identiques</em> (même type et même valeur).</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="number">2.3. Number</h3>
+<div class="paragraph">
+<p>Tous les nombres en ECMAScript sont des flottants (double précision) respectant le standard <a href="https://fr.wikipedia.org/wiki/IEEE_754"><em>IEEE 754</em></a>.
+Un nombre peut donc contenir 64 bits de données, comme en Python et PHP, entre autres.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>typeof</code> permet d&#8217;identifier un nombre :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">typeof 42;    <i class="conum" data-value="1"></i><b>(1)</b>
+typeof 13.37; <i class="conum" data-value="1"></i><b>(1)</b>
+typeof NaN;   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'number'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne également <code>'number'</code>, ce qui est souvent source de confusion.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On peut effectuer des opérations mathématiques grâce aux opérateurs <code>+</code> (addition), <code>-</code> (soustraction), <code>*</code> (multiplication), <code>/</code> (division) et <code>%</code> (modulo).</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;exception dont il faut se méfier est l&#8217;addition, car le signe <code>+</code> est également l&#8217;opérateur de concaténation de chaîne.<br>
+Dès qu&#8217;une chaîne est détectée, l&#8217;opération d&#8217;addition est remplacée par une concaténation.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">1 + 2;    <i class="conum" data-value="1"></i><b>(1)</b>
+'1' + 2;  <i class="conum" data-value="2"></i><b>(2)</b>
+1 + '2';  <i class="conum" data-value="2"></i><b>(2)</b>
+undefined + 2; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>3</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'12'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>NaN</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les fonctions <code>parseInt</code> et <code>parseFloat</code> permettent de respectivement de convertir en nombre entier et nombre flottant :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">typeof 2.10 === 'number';
+typeof '2.10' === 'string';
+
+parseInt('2.10', 10); <i class="conum" data-value="1"></i><b>(1)</b>
+parseFloat('2.10');   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>2</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>2.10</code>.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">FAQ</span> Le second argument de parseInt</div>
+<div class="paragraph">
+<p>Le second argument de la fonction <code>parseInt</code> indique dans quelle base la valeur est représentée dans la chaîne. La base décimale (10) est la plus souvent utilisée, mais il est également possible de convertir une chaîne représentant un nombre binaire (base 2) ou hexadécimal (base 16).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La méthode <code>isNaN</code> permet d&#8217;être sûr de ne pas manipuler un nombre indésirable :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">Number.isNaN(undefined + 1);  <i class="conum" data-value="1"></i><b>(1)</b>
+Number.isNaN(2.10);           <i class="conum" data-value="2"></i><b>(2)</b>
+Number.isNaN(undefined);      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>true</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>false</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Il également possible de choisir le nombre de décimales après la virgule avec la méthode <code>toFixed</code>.<br>
+Attention toutefois, la valeur retournée est de type <code>String</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">10.0101.toFixed(2);   <i class="conum" data-value="1"></i><b>(1)</b>
+10.0101.toFixed(0);   <i class="conum" data-value="2"></i><b>(2)</b>
+parseInt(10.0101, 10);<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'10.01'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'10'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>10</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-function">2.4. Function</h3>
+<div class="paragraph">
+<p>Les fonctions permettent d&#8217;isoler des portions de code et de les rendre réutilisables via l&#8217;utilisation de paramètres.</p>
+</div>
+<div class="paragraph">
+<p>Vous pouvez les déclarer via une expression ou une déclaration assignée à une variable.
+La déclaration d&#8217;une fonction est soumise à la portée du contexte dans lequel le bloc de code est placé.
+Une fonction peut être créée de trois manières :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>nommée</strong> <code>function nomDeLaFonction(){ &#8230;&#8203; }</code> ;</p>
+</li>
+<li>
+<p><strong>anonyme</strong> <code>function (){ &#8230;&#8203; }</code></p>
+</li>
+<li>
+<p><strong>fléchée</strong> <code>() &#8658; { &#8230;&#8203; }</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les fonctions anonymes sont fréquemment employées en tant que <em>callbacks</em> ou dans des contextes itératifs (tels <code>Array.map</code> etc.)</p>
+</div>
+<div class="paragraph">
+<p>Il est important de noter que la déclaration d&#8217;une fonction et son exécution sont deux choses différentes.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">function.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+function isEqualTo (value, compareWith) {
+  return compareWith.some(v =&gt; v === value);  <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+const isNotNullOrUndefined = function (value) {
+  return !isEqualTo(value, [null, undefined]);
+};
+
+function filterSparseArray (array) {
+  return array.filter(isNotNullOrUndefined);  <i class="conum" data-value="2"></i><b>(2)</b>
+}
+
+(() =&gt; {                              <i class="conum" data-value="3"></i><b>(3)</b>
+  // eslint-disable-next-line no-sparse-arrays
+  const values = [,3,,,1];
+
+  console.log(typeof Date);               <i class="conum" data-value="4"></i><b>(4)</b>
+  console.log(isNotNullOrUndefined(null));<i class="conum" data-value="5"></i><b>(5)</b>
+  console.log(filterSparseArray(values)); <i class="conum" data-value="6"></i><b>(6)</b>
+})();
+
+// eslint-disable-next-line no-undef
+console.log(values);                      <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Utilisation d&#8217;une fonction fléchée (<em>arrow function</em>) en tant que fonction anonyme de <em>callback</em> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Utilisation d&#8217;une fonction nommée comme <em>callback</em> de la méthode <code>Array.map</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Illustration d&#8217;une <em>Immediatly Invocked Function Expression</em>, aka <em>IIFE</em> aka <em>fonction immédiatement exécutée</em> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Retourne <code>'function'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Retourne <code>false</code> — la valeur étant nulle ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Retourne <code>[ 3, 1 ]</code> — un tableau filtré des valeurs nulles ou égales à <code>undefined</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Lève une exception car la constante <code>values</code> n&#8217;est pas définie dans ce <em>scope</em>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le code contenu dans le bloc déclaratif d&#8217;une fonction crée une <em>portée</em> (ou <em>scope</em>) qui est invisible au contexte parent de l&#8217;exécution de cette fonction.
+Il s&#8217;agit d&#8217;une excellente manière d&#8217;isoler des variables, notamment pour éviter des effets de bord indésirables liés à l&#8217;état d&#8217;exécution de vos scripts.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple précédent illustre un tel cas de portée en contenant la constante <code>values</code> dans l'<em>IIFE</em> : le contexte parent n&#8217;a aucune connaissance de son existence — et c&#8217;est tant mieux.</p>
+</div>
+<div class="paragraph">
+<p>Une syntaxe abrégée est disponible via les fonctions fléchées :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Tableau d&#8217;équivalence de syntaxe</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x &#8658; x*2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function(x){ return x*2 }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x &#8658; { x }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function(x){ x }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x &#8658; ({ x })</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function(x){ return { x }; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(x, y) &#8658; ({ x: y })</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function(x, y){ return { x: y }; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(x, y) &#8658; x+y</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function (x, y){ return x+y }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x &#8658; { const y = 2; return x*y }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>function(x){ const y = 2; return x*y }</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Il est possible de composer des fonctions à partir d&#8217;autres fonctions en utilisant la méthode <code>bind</code>.
+Ce <em>pattern</em> est extrêmement puissant car il permet de modifier le contexte d&#8217;exécution de ladite fonction.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">function-bind.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const FR = {
+  capitalCity: 'Paris',
+  currency: 'EUR'
+};
+
+const UK = {
+  capitalCity: 'London',
+  currency: 'GBP'
+};
+
+const formatCurrency = function (amount){
+  return `${amount} ${this.currency}`;
+};
+
+const priceInEUR = formatCurrency.bind(FR);
+const priceInGBP = formatCurrency.bind(UK);
+
+console.log(priceInEUR(100));  <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(priceInGBP(100));  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'100 EUR'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'100 GBP'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>bind</code> est également capable de créer une nouvelle fonction à laquelle vous auriez appliqué partiellement des arguments :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">function-partials.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const helloSomething = (text) =&gt; {
+  console.log('Hello ' + text);
+};
+
+const helloWorld = helloSomething.bind(null, 'World');
+const helloParis = helloSomething.bind(null, 'Paris');
+
+helloWorld();           <i class="conum" data-value="1"></i><b>(1)</b>
+helloParis();           <i class="conum" data-value="2"></i><b>(2)</b>
+helloSomething('Paris');<i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>'Hello World'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>'Hello Paris'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ce procédé est particulièrement utile pour rendre des fonctions génériques et composer des dérivées, notamment dans le cas de pagination.</p>
+</div>
+<div class="paragraph">
+<p>Les méthodes <code>call</code> et <code>apply</code> reposent sur le même principe mais à la différence de <code>bind</code>, elles exécutent immédiatement la fonction.
+Le seul élément différenciant correspond à la syntaxe d&#8217;application des arguments :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">function-call-apply.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const wrap = (prefix, suffix, text) =&gt; prefix + text + suffix;
+
+console.log(wrap.call(null, '&lt;', '&gt;', 'title'));     <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(wrap.apply(null, ['&lt;', '&gt;', 'title']));  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'&lt;title&gt;'</code> dans les deux cas.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-array">2.5. Array</h3>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>typeof</code> ne permet pas d&#8217;identifier un tableau. Il faut pour cela privilégier la méthode <code>isArray</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">typeof [];        <i class="conum" data-value="1"></i><b>(1)</b>
+Array.isArray([]);<i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'object'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>true</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Il est possible de connaître la longueur d&#8217;un tableau en utilisant la propriété <code>length</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">[1, 2, 3].length; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>3</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La méthode <code>join</code> permet de concaténer tous les éléments d&#8217;un tableau avec le séparateur de votre choix :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">[1, 2, 3].join(', ') + '… soleil';  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'1, 2, 3… soleil'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>À l&#8217;inverse, la méthode <code>from</code> prend en charge la création de tableau à partir d'<em>itérables</em> ou de structures similaires à des tableaux, comme <code>arguments</code> ou <code>NodeList</code> (dans un navigateur).</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">primivite-array-from.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+function logArguments() {
+  console.log(Array.from(arguments));
+}
+
+const logIterable = (...args) =&gt; {
+  console.log(Array.from(args));
+}
+
+console.log(Array.from('camembert')); <i class="conum" data-value="1"></i><b>(1)</b>
+logArguments(1, 'b', 3, 'd');         <i class="conum" data-value="2"></i><b>(2)</b>
+logIterable(1, 'b', 3, 'd');          <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>[ 'c', 'a', 'm', 'e', 'm', 'b', 'e', 'r', 't' ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>[ 1, 'b', 3, 'd' ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>[ 1, 'b', 3, 'd' ]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En complément, la méthode <code>concat</code> permet de concaténer d&#8217;autres éléments :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const a = [1, 2];
+
+console.log(a.concat(3));		<i class="conum" data-value="1"></i><b>(1)</b>
+console.log(a.concat([3, 4]));		<i class="conum" data-value="2"></i><b>(2)</b>
+console.log(a.concat([3, 4], [4, 5]));	<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>[ 1, 2, 3 ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>[ 1, 2, 3, 4 ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>[ 1, 2, 3, 4, 4, 5 ]</code> — cf. <a href="#primitive-map-set">Map et Set</a>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La fonction de tri via la méthode <code>sort</code> se base sur des comparaisons positives, négatives ou neutres pour retourner un nouveau tableau, réindexé :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">[1, 3, 2].sort((a, b) =&gt; a - b);  <i class="conum" data-value="1"></i><b>(1)</b>
+[1, 3, 2].sort((a, b) =&gt; b - a);  <i class="conum" data-value="2"></i><b>(2)</b>
+
+['A', 'b', 'c', 'a'].sort((a, b) =&gt; a.localeCompare(b))); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>[1, 2, 3]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>[3, 2, 1]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>['a', 'A', 'b', 'c']</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les méthodes suivantes sont des nouveautés d&#8217;ECMAScript 5.
+Elles facilitent énormément les itérations sur les tableaux tout en ajoutant une orientation fonctionnelle, utile pour la lisibilité du code.</p>
+</div>
+<div class="paragraph">
+<p>La méthode <code>map</code> permet de retourner un nouveau tableau avec des valeurs modifiées :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">array-map.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const newArray = ['a', ' B', 'c '].map(value =&gt; {
+  return value.trim().toUpperCase();
+});
+
+console.log(newArray); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>['A', 'B', 'C']</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La méthode <code>filter</code> quant à elle retourne un nouveau tableau ne contenant que les éléments retournant un <a href="#primitive-boolean">booléen <em>truthy</em></a> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">array-filter.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const values = [1, 'a', 120, undefined, 0];
+
+console.log(values.filter(value =&gt; value &lt; 10)); <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(values.filter(value =&gt; value));      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>[1, 0]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>[1, 'a', 120]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>De manière similaire, les méthodes <code>some</code> et <code>every</code> retournent un booléen si <em>au moins une itération</em> et <em>toutes les itérations</em> ont renvoyé une <em>valeur positive</em> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">array-some.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const values = [1, 'a', 120, undefined, 4];
+const isUndefined = (value) =&gt; value === undefined;
+
+console.log(values.some(isUndefined));                 <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(values.every(isUndefined));                <i class="conum" data-value="2"></i><b>(2)</b>
+console.log([undefined, undefined].every(isUndefined));<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Renvoie <code>true</code> puisqu&#8217;au moins une valeur équivaut à <code>undefined</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Renvoie <code>false</code> puisque toutes les valeurs n&#8217;équivalent pas à <code>undefined</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Renvoie <code>true</code> puisque toutes les valeurs sont égales à <code>undefined</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>ECMAScript 2015 introduit les méthodes <code>find</code> et <code>findIndex</code>, respectivement pour retourner une valeur et son index selon une fonction prédicat :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">array-find.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const DATA = ['am', 'stram', 'gram'];
+const FIND = 'stram';			<i class="conum" data-value="1"></i><b>(1)</b>
+let found;
+
+// Avant ES2015
+DATA.some((value) =&gt; {
+  if (value === FIND) {
+    found = value;
+    return true;
+  }
+});
+
+console.log(found);			  <i class="conum" data-value="2"></i><b>(2)</b>
+
+// Depuis ES2015
+found = DATA.find(value =&gt; value === FIND);
+
+console.log(found);			  <i class="conum" data-value="2"></i><b>(2)</b>
+
+const foundIndex = DATA.findIndex(value =&gt; value === FIND);
+
+console.log(foundIndex);	<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Valeur que l&#8217;on recherche ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>stram</code> (valeur recherchée) ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>1</code> (index de la valeur recherchée).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La méthode <code>reduce</code> a un comportement similaire à <code>sort</code> mais fonctionne de manière accumulative :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">array-reduce.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+let result;
+const pairs = [[1, 2], [3, 4], [5, 6]];
+
+result = pairs.reduce((acc, pair) =&gt; acc + pair[0] + pair[1], 0);
+console.log(result);    <i class="conum" data-value="1"></i><b>(1)</b>
+
+result = pairs.reduce((acc, pair) =&gt; {
+  acc[0] += pair[0];
+  acc[1] += pair[1];
+  return acc;
+}, [0, 0]);
+console.log(result);    <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>21</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>[9, 12]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">FAQ</span> Tableau non contigu.</div>
+<div class="paragraph">
+<p>Il se peut que des valeurs soient manquantes dans un tableau.
+On dit alors que les valeurs ne sont pas contiguës.</p>
+</div>
+<div class="paragraph">
+<p>Cela affecte les fonctions itératives et peut se révéler problématique si vous cherchez à conserver cette absence de valeurs :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>const a = [1,, 3, undefined, null];
+const print = (value) =&gt; console.log(value);
+
+a.length;         <i class="conum" data-value="1"></i><b>(1)</b>
+a.forEach(print); <i class="conum" data-value="2"></i><b>(2)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>5</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche 4 valeurs : <code>1</code>, <code>3</code>, <code>undefined</code> puis <code>null</code>.</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-object">2.6. Object</h3>
+<div class="paragraph">
+<p>Dans ECMAScript, tout est objet. C&#8217;est le <em>prototype</em> qui détermine le comportement dudit objet.
+Les objets peuvent être créés de manière littérale, avec la fonction <code>Object.create</code> ou via un constructeur.<br>
+À la différence d&#8217;un <code>Array</code>, il est possible de nommer une clé par une chaîne de caractères – statique ou dynamique – ou avec un <a href="#primitive-symbol">symbole</a>.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const litteral = { literally: 'lateral' };
+const litteralCopy = litteral;
+const objectCreated = Object.create(litteral);
+
+console.log(litteral.literally);        <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(objectCreated.literally);   <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(litteral === litteralCopy); <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(litteral === objectCreated);<i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'lateral'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne également <code>'lateral'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>true</code>, les deux objets étant la même instance ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Retourne <code>false</code>, les deux objets étant deux instances différentes.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>typeof</code> permet d&#8217;identifier la primitive d&#8217;une variable — au sens d&#8217;ECMAScript, pas au sens logique de votre application, c&#8217;est à dire le prototype d&#8217;un objet.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>instanceof</code> ou la méthode <code>getPrototypeOf</code> permettent justement de comparer les appartenances logiques.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-typeof-instanceof.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+function PseudoBookClass(title) {
+  this.title = title.trim();
+}
+
+const nodeBook = new PseudoBookClass('Node.js universel');
+
+console.log(typeof PseudoBookClass);              <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(typeof nodeBook);                     <i class="conum" data-value="2"></i><b>(2)</b>
+
+console.log(nodeBook instanceof PseudoBookClass); <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(Object.getPrototypeOf(nodeBook));     <i class="conum" data-value="4"></i><b>(4)</b>
+console.log(Object.getPrototypeOf(nodeBook).constructor.name);  <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>function</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>object</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>true</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>[object Object]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Affiche <code>PseudoBookClass</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Object.keys</code> extrait les propriétés énumérables d&#8217;un objet, à la différence de <code>Object.getOwnPropertyNames()</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-keys.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const busStop = {
+  name: 'Vassal Road',
+  services: ['36', 'N136', '185']
+};
+
+Object.defineProperty(busStop, 'internal_code', {
+  value: '4811',
+  enumerable: false
+});
+
+console.log(Object.keys(busStop));                <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(Object.getOwnPropertyNames(busStop)); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>[ 'name', 'services' ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>[ 'name', 'services', 'internal_code' ]</code>.</td>
+</tr>
+</table>
+</div>
+<div id="primitive-object-getset" class="paragraph">
+<p><code>Object.defineProperty</code> permet de régler finement d&#8217;autres spécificités d&#8217;un objet, dont des <strong>accesseurs</strong> (<em>getters</em>) et des <strong>mutateurs</strong> (<em>setters</em>).
+Ces attributs spéciaux nous autorisent la création de <em>propriétés calculées</em>, de <em>propriétés en lecture seule</em> ou de <em>maitriser l&#8217;écriture d&#8217;une propriété</em> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-getters.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const book = {
+  title: 'Node.js – bonnes pratiques de programmation modulaire',
+};
+
+Object.defineProperties(book, {                  <i class="conum" data-value="1"></i><b>(1)</b>
+  date_published: {
+    set: function(date) {                        <i class="conum" data-value="2"></i><b>(2)</b>
+      if (isNaN(Date.parse(date))) {
+        throw new Error('Invalid date given: ' + date);
+      }
+      else {
+        this._published_at = new Date(date);   <i class="conum" data-value="3"></i><b>(3)</b>
+      }
+    },
+    get: function() {                            <i class="conum" data-value="4"></i><b>(4)</b>
+      return this._published_at;
+    }
+  }
+});
+
+book.date_published = '2017-05-01';              <i class="conum" data-value="5"></i><b>(5)</b>
+console.log(book.date_published instanceof Date);<i class="conum" data-value="6"></i><b>(6)</b>
+book.date_published = '2017-05-0';               <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nous définissons de nouvelles propriétés pour l&#8217;objet <code>book</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Définition d&#8217;un <em>mutateur</em> pour la propriété <code>date_published</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>La valeur <code>date</code> est convertie en objet et stockée dans la propriété <code>_published_at</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Définition d&#8217;un <em>accesseur</em> pour la propriété <code>date_published</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Appel du <em>mutateur</em> qui, en interne, convertit la chaîne de caractères en objet <code>Date</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Appel de l'<em>accesseur</em> et affiche <code>true</code> car il s&#8217;agit bien d&#8217;une instance de <code>Date</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Lance une exception car la chaîne assignée n&#8217;est pas une date valide.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Trois choses sont à souligner dans cet exemple.</p>
+</div>
+<div class="paragraph">
+<p>Tout d&#8217;abord, notre définition de <em>mutateur</em> ajoute de la sécurité.
+Sa valeur est <em>garantie</em> et nous savons que <code>book.date_published</code> sera systématiquement une date.</p>
+</div>
+<div class="paragraph">
+<p>Inconvénient, nous n&#8217;avons d&#8217;autre choix que de stocker la date dans une autre propriété, ici <code>book._published_at</code>.
+Et rien ne nous empêche de la modifier directement et d&#8217;invalider une partie de notre raisonnement…<br>
+Il nous faudrait trouver un moyen de stocker la valeur du _mutateur_ et de l'<em>accesseur</em> de manière <em>privée</em>.</p>
+</div>
+<div class="paragraph">
+<p>Enfin, les propriétés sont assignées <em>uniquement</em> à l&#8217;objet <code>book</code>. Si nous voulions les généraliser à plusieurs instances d&#8217;objets se ressemblant, nous les définirions alors dans une <a href="#primitive-class">classe</a>.</p>
+</div>
+<div class="paragraph">
+<p>Nous pouvons définir des <em>accesseurs</em> et des <em>mutateurs</em> avec une notation raccourcie, ayant exactement le même effet.
+Reprenons l&#8217;exemple précédent :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-getters-shorthand.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const book = {
+  title: 'Node.js – bonnes pratiques de programmation modulaire',
+  set date_published(date) {                  <i class="conum" data-value="1"></i><b>(1)</b>
+    if (isNaN(Date.parse(date))) {
+      throw new Error('Invalid date given: ' + date);
+    }
+    else {
+      this._published_at = new Date(date);
+    }
+  },
+  get date_published () {
+    return this._published_at;
+  },
+  get year_published () {                     <i class="conum" data-value="2"></i><b>(2)</b>
+    return this.date_published.getFullYear();
+  }
+};
+
+book.date_published = '2017-05-01';
+book.year_published = '2014';                 <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Définition <em>raccourcie</em> du <em>mutateur</em> pour la propriété <code>date_published</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Définition <em>raccourcie</em> de l'<em>accesseur</em> pour la propriété <code>year_published</code> – notez qu&#8217;on ne définit pas de <em>mutateur</em> pour cette même propriété ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Lance une <em>exception</em> car la propriété <code>year_published</code> est définie en tant qu'<em>accesseur</em> uniquement ; on ne peut donc pas lui <em>assigner</em> de valeur.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Object.assign</code> étend des structures existantes et la définition de valeurs par défaut.
+Les clés et valeurs sont copiées de gauche à droite avant d&#8217;être assignées dans le premier paramètre :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-assign.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const DEFAULTS = {
+  concurrency: 10,
+  timeout: 'https',
+  tags: []
+};
+
+const userOptions = {
+  url: 'https://oncletom.io/node.js',
+  tags: ['img', 'h1']
+};
+
+const testOptions = {
+  url: null,
+  env: 'test'
+};
+
+const mergedOptions = Object.assign({}, DEFAULTS, userOptions); <i class="conum" data-value="1"></i><b>(1)</b>
+Object.assign(testOptions, userOptions);
+
+console.log(DEFAULTS);                <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(mergedOptions.tags);      <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(Object.keys(testOptions));<i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Les clés et valeurs de <code>DEFAULT</code> et celles de <code>userOptions</code> sont copiées dans un objet vide puis retournées dans <code>mergedOptions</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>{ concurrency: 10, timeout: 'https', tags: [] }</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>[ 'img', 'h1' ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>[ 'url', 'env', 'tags' ]</code> — l&#8217;objet <code>testOptions</code> est donc modifié.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="date">2.7. Date</h3>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>typeof</code> ne permet pas d&#8217;identifier une date. Il convient d&#8217;utiliser <code>instanceof</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">typeof (new Date('2014-03-24'));  <i class="conum" data-value="1"></i><b>(1)</b>
+(new Date('2014-03-24 13:37')) instanceof Date; <i class="conum" data-value="2"></i><b>(2)</b>
+typeof Date.parse('2014-03-24 13:37');          <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'object'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>true</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>'number'</code>, car il s&#8217;agit d&#8217;une date exprimée en millisecondes depuis le 1er janvier 1970 (temps <em>EPOCH</em>).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Il également possible d&#8217;obtenir la date actuelle exprimée en millisecondes avec <code>Date.now</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">Date.parse(new Date()); <i class="conum" data-value="1"></i><b>(1)</b>
+Date.now();             <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>1397381941000</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>1397381941031</code>, équivalent à la syntaxe précédente donc, la précision à la milliseconde près en plus.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-destructuring">2.8. Décomposition</h3>
+<div class="paragraph">
+<p>L&#8217;affectation par <em>décomposition</em> (<em>destructuring</em>) est une manière élégante et intuitive de piocher dans un <a href="#array">tableau</a> ou dans un <a href="#object">objet</a>.
+La décomposition n&#8217;altère pas le contenu des variables décomposées.</p>
+</div>
+<div class="paragraph">
+<p>Les valeurs d&#8217;un tableau sont décomposées dans l&#8217;ordre tandis que l&#8217;opérateur <em>spread</em> (<code>&#8230;&#8203;</code>) permet d&#8217;assigner le <em>reste</em> des valeurs dans une seule et même variable ou constante :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">destructuring-array.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const cities = ['Bordeaux', 'Toulouse', 'Montpellier', 'Aix-en-Provence'];
+
+const [chocolatineCity, ...trueSouth] = cities;  <i class="conum" data-value="1"></i><b>(1)</b>
+
+console.log(chocolatineCity);<i class="conum" data-value="2"></i><b>(2)</b>
+console.log(trueSouth);      <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(cities);         <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Décompose la première valeur du tableau et assigne <em>le reste</em> dans une autre constante ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>Bordeaux</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>[ 'Toulouse', 'Montpellier', 'Aix-en-Provence' ]</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>[ 'Bordeaux', 'Toulouse', 'Montpellier', 'Aix-en-Provence' ]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Il est également possible de <em>sauter</em> des valeurs en ne nommant pas <em>autant</em> de variables ou de constantes lors de la décomposition :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">destructuring-spread.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const count = ['un', 'zapzap', 'deux', 'trois', 'quatre'];
+const [first, ,...end] = count;  <i class="conum" data-value="1"></i><b>(1)</b>
+
+console.log(first);  <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(end);    <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Assigne la première valeur dans la constante <code>first</code>, saute la seconde et assigne le reste des valeurs dans <code>end</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>un</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>[ 'deux', 'trois', 'quatre' ]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le même mécanisme existe pour les <a href="#object">objets</a>, y compris dans des arguments de fonction :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">destructuring-object.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+/* eslint-disable no-sparse-arrays */
+
+const { join } = require('path');  <i class="conum" data-value="1"></i><b>(1)</b>
+const config = {
+  debug: true,
+};
+
+const { debug: configDebug } = config;
+const { isProd, name = 'Demo' } = config;
+const logConfigDebug = ({ debug }) =&gt; {           <i class="conum" data-value="2"></i><b>(2)</b>
+  console.log(debug);
+};
+
+console.log(join('folder', 'filename.txt'));      <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(configDebug); <i class="conum" data-value="4"></i><b>(4)</b>
+console.log(isProd);      <i class="conum" data-value="5"></i><b>(5)</b>
+console.log(name);        <i class="conum" data-value="6"></i><b>(6)</b>
+logConfigDebug(config, 'zero', 'un', 'deux');     <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Destructure la fonction <code>join</code> directement depuis le <code>require</code> de module ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Destructure la valeur <code>debug</code> du premier argument;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>folder/filename.txt</code> – <code>folder\filename.txt</code> sous Windows ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>true</code> car la clé <code>debug</code> a été décomposée en <code>configDebug</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Affiche <code>undefined</code> – cette valeur n&#8217;existe pas dans l&#8217;objet <code>config</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Affiche <code>Demo</code> – cette valeur est complétée par défaut dans l&#8217;assignation ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Affiche <code>true</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Comme indiqué en début de section, il est possible de nommer les clés de manière dynamique mais aussi d&#8217;utiliser une syntaxe raccourcie d&#8217;assignation de valeur :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">object-advanced.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const companies = ['SNCF', 'Reinfe'];
+const sncf = companies[0];
+
+const companyDetails = {
+  [sncf]: {                        <i class="conum" data-value="1"></i><b>(1)</b>
+    country: 'France',
+  },
+};
+
+companyDetails[ companies[1] ] = { <i class="conum" data-value="2"></i><b>(2)</b>
+  country: 'Spain'
+};
+
+console.log(companyDetails);             <i class="conum" data-value="3"></i><b>(3)</b>
+console.log({ sncf, foo: 'bar' });       <i class="conum" data-value="4"></i><b>(4)</b>
+console.log({ sncf: sncf, foo: 'bar' }); <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Utilise la valeur d&#8217;une variable comme nom de clé ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Syntaxe alternative possible, utile lorsqu&#8217;un objet existe déjà ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>{ SNCF: { country: 'France' }, Reinfe: { country: 'Spain' } }</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Utilise la syntaxe d&#8217;assignation raccourcie, donc assigne la valeur de <code>sncf</code> à la clé <code>sncf</code> — affiche <code>{ sncf: 'SNCF', foo: 'bar' }</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><em>Idem</em> mais sans la syntaxe d&#8217;assignation raccourcie.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-rest">2.9. Paramètres du reste</h3>
+<div class="paragraph">
+<p>Les <em>paramètres du reste</em> (<em>rest parameters</em>) utilisent une syntaxe identique à la <em>décomposition</em> mais opèrent au niveau des arguments de fonctions :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">rest.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const returnNameAndArgs = (name, ...args) =&gt; {
+  return { name, args };
+};
+
+const a = { name: 'Cabécou'};
+const b = { name: 'Chaource' };
+
+const { name, args:cheeses } = returnNameAndArgs('Fromages', a, b);  <i class="conum" data-value="1"></i><b>(1)</b>
+
+console.log(name);    <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(cheeses); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Assigne la constante décomposée <code>args</code> en tant que constante <code>cheeses</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>Fromages</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>[ { name: 'Cabécou' }, { name: 'Chaource' } ]</code> –</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>En bref, ils sont l&#8217;équivalent de l&#8217;ancienne variable <em>magique</em> <code>arguments</code> mais avec une meilleure finesse quant aux paramètres concernés.
+Les éléments retournés par les <em>paramètres du reste</em> ont aussi l&#8217;avantage d&#8217;être un véritable objet de <a href="#array">tableau</a> – <code>arguments</code> est <em>itérable</em> mais n&#8217;est pas un tableau et ne bénéficie donc pas des méthodes de compréhension telles que <code>forEach</code>, <code>map</code>, etc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-map-set">2.10. Map et Set</h3>
+<div class="paragraph">
+<p>Deux nouvelles interfaces d&#8217;itération sont disponibles depuis <em>ECMAScript 2015</em> : <em>Map</em> et <em>Set</em>.
+Elles font penser respectivement à <code>Object</code> et <code>Array</code> mais diffèrent de ces primitives sur les points suivants :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>elles garantissent l'<strong>unicité par référence</strong> des valeurs ;</p>
+</li>
+<li>
+<p>elles garantissent l'<strong>ordre</strong> des valeurs ;</p>
+</li>
+<li>
+<p>elles exposent la <strong>même interface</strong> de navigation et de manipulation ;</p>
+</li>
+<li>
+<p>elles peuvent être créées à partir d&#8217;un <em>itérable</em> ou d&#8217;un tableau (de valeurs ou de clés+valeurs).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">set.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const primes = new Set([11, 13]);  <i class="conum" data-value="1"></i><b>(1)</b>
+const primesArray = Array.from(primes);
+console.log(primesArray);          <i class="conum" data-value="2"></i><b>(2)</b>
+
+const example = new Set();
+example.add(2);
+example.add(3);
+example.add([5, 7]);
+example.add([5, 7]);               <i class="conum" data-value="3"></i><b>(3)</b>
+example.add(primes);               <i class="conum" data-value="4"></i><b>(4)</b>
+example.add(primesArray);
+example.add(primesArray);          <i class="conum" data-value="5"></i><b>(5)</b>
+
+console.log(example);              <i class="conum" data-value="6"></i><b>(6)</b>
+console.log([...example]);         <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Construit un <code>Set</code> depuis un <code>Array</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Reconstruit un <code>Array</code> à partir des valeurs du <code>Set</code> et affiche <code>[ 11, 13 ]</code>;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Ce tableau sera ajouté car s&#8217;il est identique au précédent, il s&#8217;agit d&#8217;un objet différent, donc d&#8217;une référence d&#8217;objet différente ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>On peut ajouter un <code>Set</code> en tant que valeur de <code>Set</code> si on le souhaite ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>À l&#8217;inverse du point 3, l&#8217;ajout multiple d&#8217;une référence à un même objet (ici, <code>primesArray</code>) ne fonctionnera pas ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Affiche <code>Set { 2, 3, [ 5, 7 ], [ 5, 7 ], Set { 11, 13 }, [ 11, 13 ] }</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Utilise la <a href="#primitive-destructuring">décomposition</a> pour extraire les valeurs du <code>Set</code> et affiche <code>[ 2, 3, [ 5, 7 ], [ 5, 7 ], Set { 11, 13 }, [ 11, 13 ] ]</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Map</code> offre quelques avantages à l&#8217;utilisation d&#8217;un <code>Object</code> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les clés peuvent être de n&#8217;importe quel type (y compris une référence à un autre objet ou tableau ECMAScript) ;</p>
+</li>
+<li>
+<p><code>.size</code> retourne le nombre de clés de la <em>Map</em> ;</p>
+</li>
+<li>
+<p>l&#8217;itération est très simple avec <code>for..of</code>, <code>forEach</code> ou même en utilisant la <a href="#primitive-destructuring">décomposition</a>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">map.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const store = new Map();
+const primes = new Set([2, 3, 5]);
+const config = {
+  debug: true,
+};
+
+store.set('config', config);
+store.set(primes, { count: primes.size });  <i class="conum" data-value="1"></i><b>(1)</b>
+
+store.forEach((value, key) =&gt; console.log(key, value));  <i class="conum" data-value="2"></i><b>(2)</b>
+
+for (let [key, value] of store) {
+  console.log(key, value);  <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+console.log(store.size);    <i class="conum" data-value="4"></i><b>(4)</b>
+console.log(...store);      <i class="conum" data-value="5"></i><b>(5)</b>
+
+store.clear();
+console.log(...store);      <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Assigne un objet en référence de <code>Map</code> vers un objet de type <code>Set</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Parcourt chaque enregistrement de <code>Map</code> et en affiche sa clé et sa valeur ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><em>Ditto</em> mais avec l&#8217;expression <code>for..of</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>2</code> car notre <code>Map</code> comporte 2 enregistrements ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Affiche les enregistrements de la <code>Map</code> sous forme de paires <code>[clé, valeur]</code>;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Affiche <code>&#160;</code> (<em>rien</em>) car la <code>Map</code> a été vidée à la ligne précédente.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Toutefois <em>Map</em> et <em>Set</em> ont quelques inconvénients :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>absence des méthodes de compréhension de tableau (<code>map</code>, <code>reduce</code> etc.) ;</p>
+</li>
+<li>
+<p>pas de conversion native en JSON.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>À vous de choisir entre <code>Object</code> et <code>Map</code> ou entre <code>Array</code> et <code>Set</code> en fonction de la rigueur de vos besoins.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Documentation</span> Pour en savoir plus</div>
+<div class="paragraph">
+<p>La documentation complète de <code>Map</code> et de <code>Set</code> est disponible en français sur la ressource communautaire MDN :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map" class="bare">developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map</a></span></p>
+</li>
+<li>
+<p><span class="URL"><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set" class="bare">developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set</a></span></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-class">2.11. Class</h3>
+<div class="paragraph">
+<p>ECMAScript 2015 ajoute au langage des sucres syntaxiques facilitant la création et maintenance d&#8217;objets métier.
+Nous bénéficions d&#8217;une véritable notion de constructeur, de méthodes statiques et même d&#8217;extension de prototype — on pourrait parler d&#8217;héritage mais nous n&#8217;avons pas envie d&#8217;aller dans cette direction, pas vrai ?</p>
+</div>
+<div class="paragraph">
+<p>Tout ce que nous attachions auparavant à une <em>fonction</em>, nous nous référons désormais à une <em>classe</em> à proprement parler.<br>
+En voici un exemple de définition :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">class-view.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+class View {
+  constructor(config) {
+    this.config = Object.assign({}, config);
+  }
+
+  render() {
+    throw new Error('Extend the View class to render content.');
+  }
+
+  static removeDuplicates(char, content) {
+    return content.replace(new RegExp(`[${char}]{2,}`), char);
+  }
+}
+
+module.exports = View;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La définition de la classe <code>View</code> comporte trois fonctions :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>constructor</code> : le constructeur invoqué à chaque nouvelle instantiation via l&#8217;opérateur <code>new</code> ;</p>
+</li>
+<li>
+<p><code>render</code> : une méthode partagée par toutes les instances de <code>View</code> — équivalent à <code>View.prototype.render = function () { &#8230;&#8203; }</code> ;</p>
+</li>
+<li>
+<p><code>removeDuplicates</code> : une méthode statique, utilisable indépendamment des instances de <code>View</code> — équivalent à <code>View.removeDuplicates = () &#8658; ({ &#8230;&#8203; })</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple suivant illustre le comportement de la classe <code>View</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">class-constructor.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const View = require('./class-view.js');
+
+const htmlView = new View({ blacklist: ['object', 'iframe']});
+
+console.log(typeof htmlView);                         <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(htmlView instanceof View);                <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(htmlView.config);                         <i class="conum" data-value="3"></i><b>(3)</b>
+console.log(View.removeDuplicates('.', 'Node...js')); <i class="conum" data-value="4"></i><b>(4)</b>
+
+try {
+  htmlView.render({ title: 'Node.js' });
+}
+catch (err) {
+  console.error(err);                                 <i class="conum" data-value="5"></i><b>(5)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>object</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>true</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>{ blacklist: [ 'object', 'iframe' ] }</code> — l&#8217;objet de configuration initial ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>Node.js</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Affiche une exception personnalisée.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nous l&#8217;avons vu précédemment au niveau des <a href="#primitive-object">objets</a>, ECMAScript permet de définir des accesseurs.<br>
+L&#8217;exemple suivant illustre leur définition au sein d&#8217;une classe :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">class-accessors.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+class Book {
+  constructor(title) {
+    this.title = title;
+    this.GS1;
+    this.ISBN;
+  }
+
+  get EAN13() {
+    return this.GS1 + '-' + this.ISBN;
+  }
+
+  set EAN13(value) {
+    const EAN13 = value.split('-');
+
+    this.GS1 = EAN13[0];
+    this.ISBN = EAN13[1];
+  }
+}
+
+const cssBook = new Book('CSS maintenables');
+cssBook.EAN13 = '978-2212136401';
+
+console.log(cssBook.GS1);  <i class="conum" data-value="1"></i><b>(1)</b>
+console.log(cssBook.ISBN); <i class="conum" data-value="2"></i><b>(2)</b>
+console.log(cssBook.EAN13);<i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'978'</code>;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'2212136401'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>'978-2212136401'</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La logique des accesseurs est ainsi partagée entre <em>tous les objets</em> étant des instances de <code>Book</code>.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple suivant illustre deux classes héritant de notre classe <code>View</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">class-extends.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const View = require('./class-view');
+
+class HTMLView extends View {
+  constructor (options) {
+    super(Object.assign({ doctype: 'html'}, options));
+
+    this.doctype = this.config.doctype;
+  }
+
+  render (data) {
+    return `&lt;!DOCTYPE ${this.doctype}&gt;
+&lt;html&gt;
+  &lt;title&gt;${data.title}&lt;/title&gt;
+  &lt;body&gt;
+    &lt;h1&gt;${data.title}&lt;/h1&gt;
+
+    &lt;main&gt;${data.content}&lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;`;
+  }
+}
+
+class TextView extends View {
+  render (data){
+    const underline = '#'.repeat(data.title.length + 2);
+
+    return `# ${data.title}
+${underline}
+
+${data.content.trim()}`
+  }
+}
+
+const viewData = {title: 'Node.js', content: ' Hello World! '};
+
+console.log((new HTMLView()).render(viewData));   <i class="conum" data-value="1"></i><b>(1)</b>
+console.log((new TextView()).render(viewData));   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne une chaîne de HTML après avoir interpolé les variables avec leur valeur respective ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne la chaîne de texte <code># Node.js\n#########\n\nHello World!</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>HTMLView</code> surcharge le constructeur tandis que <code>TextView</code> se contente du comportement par défaut défini par le constructeur de <code>View</code>.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;appel à la fonction <code>super</code> revient à <em>appeler le constructeur de la classe que l&#8217;on étend</em>.
+Ne pas l&#8217;appeler revient à ne pas exécuter le constructeur de la classe parent.</p>
+</div>
+<div class="paragraph">
+<p>S&#8217;il est désormais plus sûr d&#8217;utiliser l&#8217;extension de chaîne prototypale, <strong>il ne faut pas abandonner la composition</strong> pour autant.</p>
+</div>
+<div class="paragraph">
+<p>Il est en effet bien plus simple de réutiliser (et de tester) des fonctions agnostiques de contexte — agnostiques du <code>this</code> — que de maintenir de grosses classes héritant sur plusieurs niveaux.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-promise">2.12. Promise</h3>
+<div class="paragraph">
+<p>L&#8217;organisation du code autour des <em>callbacks</em> est difficile et ce, que ce soit en terme de maintenance, de gestion des erreurs ou de propagation d&#8217;information.</p>
+</div>
+<div class="paragraph">
+<p>Un motif a émergé en réponse à cette complexité grandissante : les <strong>promesses</strong>.
+<strong>Il s&#8217;agit d&#8217;une primitive à maitriser</strong> et disponible <em>nativement</em> à la fois dans Node et les navigateurs modernes.</p>
+</div>
+<div class="paragraph">
+<p>Historiquement, de nombreuses librairies ont proposé leur propre implémentation de promesses mais avec le défaut de ne pas être interopérables entre elles.
+La spécification <em>Promise/A+</em> a émergé pour établir un standard de compatibilité.
+ECMAScript 2015 introduit nativement cette API, la rendant alors disponible pour le web et pour Node, avec ou sans <em>polyfill</em>.</p>
+</div>
+<div class="paragraph">
+<p>Les cas d&#8217;utilisation des promesses sont multiples :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>exécuter une continuité d&#8217;actions asynchrones ;</p>
+</li>
+<li>
+<p>paralléliser des actions asynchrones et exécuter des instructions lorsqu&#8217;une ou plusieurs de ces actions sont terminées ;</p>
+</li>
+<li>
+<p>simplifier la gestion des erreurs à n&#8217;importe quelle étape du processus asynchrone.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Définition</span> Promesse</div>
+<div class="paragraph">
+<p>Une promesse est <strong>un objet retourné immédiatement</strong> et qui exécute une fonction de résolution <strong>une seule et <em>unique</em> fois dans le futur</strong>.
+Cette résolution peut être soit <em>positive</em> soit <em>négative</em>.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est un peu comme envoyer un <em>courrier suivi</em> :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>le bureau de poste vous remet une preuve de dépôt (la promesse) ;</p>
+</li>
+<li>
+<p>les services postaux acheminent l&#8217;accusé de réception lorsque le destinataire a reçu le courrier et signé l&#8217;avis de délivrance (<em>résolution positive</em>) ;</p>
+</li>
+<li>
+<p>les services postaux émettent un accusé de non-délivrance si le destinataire n&#8217;a pas signé ni récupéré son courrier dans un délai imparti (<em>résolution négative</em>).</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une <code>Promise</code> consiste à appeler un <em>constructeur</em> implémentant le <em>pattern</em> <em>Executor</em>.
+Le constructeur transmet les fonctions d&#8217;exécution permettant de <em>résoudre</em> la promesse, <em>positivement</em> en appelant <code>resolve</code> ou <em>négativement</em>, en appelant <code>reject</code>.<br>
+<code>resolve</code> et <code>reject</code> transmettent les valeurs passées en argument à vos <em>callbacks</em> souscrivant respectivement à <code>then</code> et <code>catch</code>.</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">promise.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const p = new Promise((resolve, reject) =&gt; resolve('deux'));
+
+p.then(label =&gt; {
+    console.log(label);                 <i class="conum" data-value="2"></i><b>(2)</b>
+
+    return label.toUpperCase();
+  })
+  .then(LABEL =&gt; console.log(LABEL))    <i class="conum" data-value="3"></i><b>(3)</b>
+  .then(LABEL =&gt; console.log(LABEL))    <i class="conum" data-value="4"></i><b>(4)</b>
+
+console.log('un');                      <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Affiche <code>un</code> car la promesse est résolue de manière asynchrone, donc après l&#8217;exécution de cette ligne synchrone ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Affiche <code>deux</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>DEUX</code> car la promesse précédente résoud la valeur <em>DEUX</em> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Affiche <code>undefined</code> car la promesse précédent ne résoud <em>rien</em>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>L&#8217;exemple suivant illustre une encapsulation de la fonction <code>fs.readFile</code> de Node en tant que promesse :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">readfile.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const fs = require('fs');
+
+const readFilePromise = (file) =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    fs.readFile(file, (err, buffer) =&gt; {          <i class="conum" data-value="1"></i><b>(1)</b>
+      if (err) {
+        return reject(err);                       <i class="conum" data-value="2"></i><b>(2)</b>
+      }
+
+      resolve(JSON.parse(buffer));                <i class="conum" data-value="3"></i><b>(3)</b>
+    });
+  });
+};
+
+module.exports = readFilePromise;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>La promesse englobe l&#8217;exécution asynchrone — toute exception levée revient à implicitement appeler <code>reject</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Résout négativement la promesse en passant le contenu de la dite erreur ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Résout positivement la promesse — si le <em>parsing</em> échoue, la promesse sera rejetée.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une instance de <code>Promise</code> expose plusieurs méthodes pour propager le statut de son exécution.
+Les plus couramment employées sont <code>then</code> et <code>catch</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>then(onSuccess[, onError])</code> : fonction acceptant un <em>callback</em> de résolution et un <em>callback</em> de rejet facultatif ;</p>
+</li>
+<li>
+<p><code>catch(onError)</code> : fonction acceptant un <em>callback</em> de rejet.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Illustrons désormais la consommation d&#8217;une promesse en se basant sur le code précédent :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">promise-readfile.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const { join } = require('path');
+const readFilePromise = require('./readfile');
+
+const file = join(__dirname, '..', '..', 'package.json');
+
+const logError = (err) =&gt; console.error(err);
+
+readFilePromise(file)                                 <i class="conum" data-value="1"></i><b>(1)</b>
+  .then(pkg =&gt; Object.keys(pkg.dependencies).length)  <i class="conum" data-value="2"></i><b>(2)</b>
+  .then(count =&gt; console.log(count))                  <i class="conum" data-value="3"></i><b>(3)</b>
+  .catch(logError);                                   <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Création d&#8217;une <code>Promise</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Consommation du résultat et propagation d&#8217;une nouvelle promesse retournant le nombre de dépendances contenu dans le <code>package.json</code> de ce chapitre ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Consommation du nouveau résultat ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Cette fonction sera appelée si une erreur se déclenche en amont de la chaîne de promesses.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>Promise.all</code> est une méthode statique de l&#8217;API <em>Promise</em> qui retourne elle-même une promesse.
+Elle sera résolue positivement lorsque toutes les promesses passées en argument seront résolues ou négativement dès que l&#8217;une d&#8217;entre elles échouera.</p>
+</div>
+<div class="paragraph">
+<p>Reprenons le précédent exemple pour compter <em>en parallèle</em> les dépendances de trois fichiers <code>package.json</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">promise-all.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const { join } = require('path');
+const readFilePromise = require('./readfile');
+
+const files = ['chapter-02', 'chapter-01', 'chapter-03'].map(dir =&gt; {
+  return join(__dirname, '..', '..', dir, 'package.json');
+});
+
+const logError = (err) =&gt; console.error(err);
+
+Promise.all(files.map(readFilePromise))               <i class="conum" data-value="1"></i><b>(1)</b>
+  .then(allPkgs =&gt; allPkgs.reduce((count, pkg) =&gt; {   <i class="conum" data-value="2"></i><b>(2)</b>
+    return count + Object.keys(pkg.dependencies || {}).length;
+  }, 0))
+  .then(count =&gt; console.log(count))                  <i class="conum" data-value="3"></i><b>(3)</b>
+  .catch(logError);</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>On passe un tableau de promesses non-résolues à <code>Promise.all</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Cette fonction est exécutée dès que le tableau est résolu, avec le contenu de chaque fichier – dont nous comptons un par un le nombre de dépendances ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Cette ligne ne change pas par rapport au précédent exemple — un bénéfice d&#8217;une bonne découpe de code.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Usez et abusez des promesses : elles sont un des meilleurs moyens à notre disposition pour <strong>modulariser</strong>, <strong>linéariser</strong> et <strong>clarifier le sens</strong> du flot de notre code.</p>
+</div>
+<div class="paragraph">
+<p>Nous aborderons à nouveau les <a href="../appendix-b/index.html#promise">promesses en tant que <em>design pattern</em></a> dans l&#8217;annexe du même nom.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Lien</span> Guide des promesses</div>
+<div class="paragraph">
+<p>Un guide <em>très</em> complet — en anglais — est publié en libre consultation sur le site du W3C.
+Un dépôt sur GitHub permet d&#8217;y contribuer.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://www.w3.org/2001/tag/doc/promises-guide" class="bare">www.w3.org/2001/tag/doc/promises-guide</a></span></p>
+</li>
+<li>
+<p><span class="URL"><a href="https://github.com/w3ctag/promises-guide" class="bare">github.com/w3ctag/promises-guide</a></span></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Documentation</span> Pour en savoir plus</div>
+<div class="paragraph">
+<p>La documentation complète de <code>Promise</code> est disponible en français sur la ressource communautaire MDN :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise" class="bare">developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise</a></span></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-async-await">2.13. async/await</h3>
+<div class="paragraph">
+<p>Nous avons beaucoup appris sur les différents moyens d&#8217;organiser notre code de manière asynchrone.
+Peut-être avec une indigestion de <code>then()</code>.<br>
+Les opérateurs <code>async</code> et <code>await</code> sont là pour respectivement :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>déclarer une fonction comme pouvant <em>être mise en pause</em> ;</p>
+</li>
+<li>
+<p>mise en pause effectuée avec l&#8217;opérateur <code>await</code>, pause suivie jusqu&#8217;à ce qu&#8217;une… promesse retourne un résultat.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Une promesse placée derrière un <code>await</code> jettera une exception.
+Cette exception est interceptable avec un bloc <code>try/catch</code>, comme du code synchrone.</p>
+</div>
+<div class="paragraph">
+<p>Reprenons une nouvelle fois notre exemple précédent, en combinant la transformation en promesses et les opérateurs <code>async</code> et <code>await</code> :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="title">async-await.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {join} = require('path');
+const fs = require('fs');
+const {promisify} = require('util');
+const readFilePromise = promisify(fs.readFile);
+
+const files = ['chapter-02', 'chapter-01', 'chapter-03'].map(dir =&gt; {
+  return join(__dirname, '..', '..', dir, 'package.json');
+});
+
+async function getAllDeps (files) {                      <i class="conum" data-value="1"></i><b>(1)</b>
+  const deps = {};
+
+  for (let filePath of files) {
+    const fileBuffer = await readFilePromise(filePath);  <i class="conum" data-value="2"></i><b>(2)</b>
+    const pkg = JSON.parse(String(fileBuffer));          <i class="conum" data-value="3"></i><b>(3)</b>
+
+    Object.assign(deps, pkg.dependencies);
+  }
+
+  return deps;
+}
+
+getAllDeps(files)                                        <i class="conum" data-value="4"></i><b>(4)</b>
+  .then(deps =&gt; console.log(Object.keys(deps).length))   <i class="conum" data-value="5"></i><b>(5)</b>
+  .catch(err =&gt; console.error(err));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Déclaration de la fonction <code>getAllDeps</code> en tant que fonction asynchrone ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>On itère comme de manière synchrone, en demandant à l&#8217;interpréteur d&#8217;attendre que la promesse <code>readFilePromise</code> soit résolue ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Le contenu de <code>fileBuffer</code> est disponible à la ligne d&#8217;après, sans utiliser <code>readFilePromise.then()</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>La fonction <code>getAllDeps</code> retourne une promesse ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>&lt;2&gt; Résultat identique à celui calculé dans <code>promise-all.js</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>À travers cet exemple on comprend qu&#8217;une fonction <code>async</code> retourne en réalité une promesse.
+Promesse résolue lorsque toutes ses conditions <code>await</code> sont elles aussi résolues séquentiellement.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;inconvénient de notre exemple est que la lecture des fichiers ne se fait plus en <em>parallèle</em> mais bel et bien de manière <em>séquentielle</em>.
+En effet, notre code est mis en pause à chaque itération de boucle, lors de l&#8217;appel de <code>readFilePromise</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-regexp">2.14. RegExp</h3>
+<div class="paragraph">
+<p>Les expressions régulières en JavaScript permettent de pratiquer des recherches de motifs simples et complexes au sein de chaînes de caractères.
+Elles sont inspirées de l&#8217;implémentation dans Perl 5.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;opérateur <code>instanceof</code> permet d&#8217;identifier une instance d&#8217;expression régulière :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/Eyroll?es/g instanceof RegExp; <i class="conum" data-value="1"></i><b>(1)</b>
+(new RegExp('Eyroll?es', 'g')) instanceof RegExp; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>true</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La méthode <code>exec</code> permet de capturer les occurrences d&#8217;une expression régulière au sein d&#8217;une chaîne de caractères :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/(.+)(Script)/.exec('ECMAScript'); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>['ECMAScript', 'ECMA', 'Script']</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Plusieurs drapeaux peuvent être utilisés :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>g</code> pour chercher dans toute la chaîne et ne pas s&#8217;arrêter à la première occurrence trouvée ;</p>
+</li>
+<li>
+<p><code>i</code> pour ne pas tenir compte de la casse ;</p>
+</li>
+<li>
+<p><code>m</code> pour que les caractères <code>^</code> et <code>$</code> correspondent respectivement au début et à la fin d&#8217;une ligne au lieu du début et de la fin de la chaîne ;</p>
+</li>
+</ul>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">let re;
+const text = ['JavaScript', 'ECMAScript'].join("\n");
+
+re = /^([a-z]+)(Script)/;
+re.exec(text); <i class="conum" data-value="1"></i><b>(1)</b>
+
+re = /^([a-z]+)(Script)/i;
+re.exec(text); <i class="conum" data-value="2"></i><b>(2)</b>
+
+re = /([a-z]+)(Script)$/i;
+re.exec(text); <i class="conum" data-value="3"></i><b>(3)</b>
+
+re = /([a-z]+)(Script)$/im;
+re.exec(text); <i class="conum" data-value="4"></i><b>(4)</b>
+
+re = /^([a-z]+)(Script)$/gim;
+re.exec(text); <i class="conum" data-value="5"></i><b>(5)</b>
+re.exec(text); <i class="conum" data-value="6"></i><b>(6)</b>
+re.exec(text); <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>null</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>['JavaScript', 'Java', 'Script']</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Retourne <code>['ECMAScript', 'ECMA', 'Script']</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Retourne <code>['JavaScript', 'Java', 'Script']</code>, puisque <code>$</code> correspond à la fin de ligne et non la fin de chaîne ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Retourne <code>['JavaScript', 'Java', 'Script']</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Retourne <code>['ECMAScript', 'ECMA', 'Script']</code> puisque le curseur a effectué la recherche après la position de la précédente occurrence ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Retourne <code>null</code> puisque le curseur a rencontré la fin de la chaîne ;</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Remarque</span> Gare à la réutilisation de l&#8217;objet <em>RegExp</em> !</div>
+<div class="paragraph">
+<p>Vous l&#8217;aurez remarqué avec le drapeau <code>g</code>, le comportement de la méthode <code>exec</code> peut renvoyer un résultat différent à chaque appel.</p>
+</div>
+<div class="paragraph">
+<p>Il faut juste veiller à ce que ce soit un résultat escompté pour éviter tout effet de bord dans vos applications.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>À la manière de <code>exec</code>, la méthode <code>test</code> se contente de renvoyer un booléen si un motif a été trouvé ou non :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">/(.+)(Script)/.test('ECMAScript'); <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>true</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="primitive-json">2.15. JSON</h3>
+<div class="paragraph">
+<p>L&#8217;introduction du support natif du parsing JSON dans ECMAScript 5 a apporté un grand confort dans la consommation de données issues d&#8217;API.
+La sécurité de cette consommation a été améliorée de par sa prise en charge par les développeurs de VM ECMAScript.</p>
+</div>
+<div class="paragraph">
+<p>La fonction <code>JSON.parse</code> tente de convertir une chaîne de texte supposée au format JSON en un objet natif :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">const jsonContent = '{ "ECMAScript": 5.1 }';
+
+typeof jsonContent; <i class="conum" data-value="1"></i><b>(1)</b>
+
+const content = JSON.parse(jsonContent);
+content.ECMAScript; <i class="conum" data-value="2"></i><b>(2)</b>
+
+try {
+  JSON.parse('{ "ECMAScript": 5.1');
+}
+catch (err) {
+  console.log(err.message); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'string'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>5.1</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Affiche <code>Unexpected end of input</code> car <code>JSON.parse</code> a lancé une exception <code>SyntaxError</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>À l&#8217;inverse, la fonction <code>JSON.stringify</code> convertit un objet natif en chaîne de caractères au format JSON :</p>
+</div>
+<div class="listingblock interactive interactive--javascript">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">JSON.stringify({ ECMAScript: 5.1 }); <i class="conum" data-value="1"></i><b>(1)</b>
+JSON.stringify({ ECMAScript: 5.1 }, null, 2); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Retourne <code>'{"ECMAScript":5.1}'</code> ;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Retourne <code>'{\n&#160;&#160;"ECMAScript": 5.1\n}'</code>, le troisième argument formate proprement avec la taille d&#8217;indentation spécifiée, exprimée en nombre d&#8217;espaces par niveau de profondeur.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">URL</span> Spécification ECMAScript</div>
+<div class="paragraph">
+<p>L&#8217;ensemble de la spécification ECMAScript est disponible aux formats PDF et HTML.
+Il s&#8217;agit d&#8217;une mine d&#8217;or pour comprendre les mécanismes internes du langage, les types et primitives à disposition.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="URL"><a href="https://www.ecma-international.org/ecma-262/5.1/" class="bare">www.ecma-international.org/ecma-262/5.1/</a></span></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-01-11 18:53:53 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
